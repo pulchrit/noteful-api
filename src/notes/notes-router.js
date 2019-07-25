@@ -32,7 +32,7 @@ notesRouter
 
         // Loop over values in newNote, if any are null, then return 400
         // with error saying that field is missing.
-        const newNote = {note_name, date_modified, content, folder_id};
+        const newNote = {note_name, content, folder_id};
         for (const[key, value] of Object.entries(newNote)) {
             if (value == null) {
                 res.status(400).json({
@@ -40,7 +40,9 @@ notesRouter
                 });
             }
         }
-              
+           
+        newNote.date_modified = date_modified;
+        
         NotesService.insertNote(req.app.get('db'), newNote)
         .then(note => {
             res

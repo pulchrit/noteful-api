@@ -72,6 +72,7 @@ foldersRouter
     })
     .patch(bodyParser, (req, res, next) => {
         const {folder_name} = req.body;
+        const newFolderName = {folder_name};
 
         if (!folder_name) {
             return res.status(400).json({

@@ -14,13 +14,13 @@ const NotesService = {
     },
 
     // POST/INSERT/CREATE
-    insertFolder(knexInstance, newNote) {
+    insertNote(knexInstance, newNote) {
         return knexInstance
             .insert(newNote)
             .into('notes')   
             .returning('*')
             .then(rows => {
-                return row[0]
+                return rows[0]
             });
     },
 
